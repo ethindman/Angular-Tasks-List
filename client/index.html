@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="taskApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Tasks App</title>
+	<!-- Bootswatch: Flatly -->
+	<link rel="stylesheet" href="http://bootswatch.com/united/bootstrap.min.css"/>
+	<!-- Styles -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<!-- AngularJS -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<!-- AppJS -->
+	<script src="js/app.js"></script>
+	<!-- TaskFactory -->
+	<script src="js/factories/TaskFactory.js"></script>
+	<!-- TasksController -->
+	<script src="js/controllers/TasksController.js"></script>
+</head>
+<body>
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Tasks App</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+	<div class="container" ng-controller="TasksController">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Tasks</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Tasks</th>
+							<th>Priority</th>
+							<th>Notes</th>
+							<th>Deadline</th>
+							<th>Created</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="task in tasks">
+							<td>{{task.name}}</td>
+							<td>{{task.priority}}</td>
+							<td>{{task.notes}}</td>
+							<td>{{task.deadline | date: 'fullDate'}}</td>
+							<td>{{task.created_at | date: 'fullDate'}}</td>
+							<td>
+								<button class="btn btn-danger" ng-click="removeTask(task)">Remove</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<h4>Add a New Task</h4>
+				<form>
+				  <div class="form-group">
+				    <label for="task">Task Name:</label>
+				    <input type="text" class="form-control" id="task" name="task" placeholder="Enter task" ng-model="newTask.name">
+				  </div>
+				  <div class="form-group">
+						<select class="form-control" ng-model="newTask.priority">
+						  <option>HIGH</option>
+						  <option>MEDIUM</option>
+						  <option>LOW</option>
+						</select>
+					</div>
+				  <div class="form-group">
+				    <label for="deadline">Deadline:</label>
+				    <input type="date" class="form-control" id="deadline" name="deadline" ng-model="newTask.deadline">
+				  </div>
+					<div class="form-group">
+						<label for="notes">Notes:</label>
+						<textarea class="form-control" rows="5" id="notes" ng-model="newTask.notes"></textarea>
+					</div>
+					<div class="pull-right">
+				  	<input type="submit" class="btn btn-success" value="Submit" ng-click="addTask()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

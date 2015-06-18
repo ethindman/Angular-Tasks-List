@@ -1,0 +1,14 @@
+{
+	"name": "Task_App",
+	"version": "0.0.1",
+	"private": false,
+	"description": "A simple to do application built on the full mean stack",
+	"scripts": {
+		"start": "node server"
+	},
+	"dependencies": {
+		"express": "~4.12.3",
+		"mongoose": "4.0.1",
+		"body-parser": "^1.12.2"
+	}
+}
